@@ -22,7 +22,7 @@ Chef.destroy_all
 
 @ingredient_1 = Ingredient.create!(name: "Sugar", calories: 10)
 @ingredient_2 = Ingredient.create!(name: "Salt", calories: 20)
-@ingredient_3 = Ingredient.create!(name: "Pepper", calories: 30)
+@ingredient_3 = Ingredient.create!(name: "Pepper", calories: 50)
 
 IngredientDish.create!(ingredient_id: @ingredient_1.id, dish_id: @dish_1.id)
 IngredientDish.create!(ingredient_id: @ingredient_1.id, dish_id: @dish_3.id)
