@@ -6,4 +6,8 @@ class Chef < ApplicationRecord
   def get_ingredient_names
     ingredients.order(:name).distinct.pluck(:name).to_sentence
   end
+
+  def most_popular_3_ingredients
+    ingredients.select('ingredients.*, count(dishes)').joins(:dishes).group(:id).order(count: :desc).limit(3).pluck(:name)
+  end
 end
