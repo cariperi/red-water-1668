@@ -40,4 +40,32 @@ RSpec.describe 'the chef show page' do
       expect(page).to_not have_content("#{@ingredient_3.name}")
     end
   end
+
+  describe "extension" do
+    it 'displays a list of the 3 most popular ingredient names for the given chef' do
+      @ingredient_4 = Ingredient.create!(name: "Apples", calories: 10)
+      @dish_5 = @chef_1.dishes.create(name: "Dish 5", description: "123")
+      @dish_6 = @chef_1.dishes.create(name: "Dish 6", description: "456")
+
+      IngredientDish.create!(ingredient_id: @ingredient_2.id, dish_id: @dish_5.id)
+      IngredientDish.create!(ingredient_id: @ingredient_2.id, dish_id: @dish_6.id)
+      IngredientDish.create!(ingredient_id: @ingredient_1.id, dish_id: @dish_5.id)
+      IngredientDish.create!(ingredient_id: @ingredient_1.id, dish_id: @dish_6.id)
+      IngredientDish.create!(ingredient_id: @ingredient_3.id, dish_id: @dish_5.id)
+      IngredientDish.create!(ingredient_id: @ingredient_3.id, dish_id: @dish_6.id)
+      IngredientDish.create!(ingredient_id: @ingredient_4.id, dish_id: @dish_5.id)
+
+      visit chef_path(@chef_1)
+      save_and_open_page
+
+      expect(page).to have_content("3 Most Popular Ingredients")
+      expect(page).to have_content(@ingredient_2.name)
+      expect(page).to have_content(@ingredient_1.name)
+      expect(page).to have_content(@ingredient_3.name)
+      expect(page).to_not have_content(@ingredient_4.name)
+
+      expect(@ingredient_2.name).to appear_before(@ingredient_1.name)
+      expect(@ingredient_1.name).to appear_before(@ingredient_3.name)
+    end
+  end
 end
