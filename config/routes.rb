@@ -5,4 +5,7 @@ Rails.application.routes.draw do
 
   resources :ingredient_dishes, only: [:create]
 
+  resources :chefs, only: [:show] do
+    resources :ingredients, only: [:index], controller: 'chefs/ingredients'
+  end
 end
