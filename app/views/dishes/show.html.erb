@@ -1,0 +1,17 @@
+<h1>Dish Show Page</h1>
+
+<h3>Dish Name: <%= @dish.name %></h3>
+<h3>Dish Description: <%= @dish.description %></h3>
+
+<h2>Ingredients for this Dish:</h2>
+
+<% @dish.ingredients.each do |ingredient| %>
+  <ul>
+  <div id="ingredient-<%= ingredient.id %>">
+    <li><h3>Ingredient Name: <%= ingredient.name %></h3></li>
+  </div>
+  </ul>
+<% end %>
+
+<h3>Total Calories: <%= @dish.get_calorie_count %></h3>
+<h3>Chef Name: <%= @dish.chef_name %></h3>
