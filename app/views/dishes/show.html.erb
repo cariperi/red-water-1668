@@ -15,3 +15,16 @@
 
 <h3>Total Calories: <%= @dish.get_calorie_count %></h3>
 <h3>Chef Name: <%= @dish.chef_name %></h3>
+
+
+ <div id="add-ingredient">
+
+  <h2>Add an Ingredient</h2>
+
+  <%= form_with url: ingredient_dishes_path, local: true, method: :post do |form| %>
+    <%= form.label :ingredient_id, "Enter Ingredient ID" %>
+    <%= form.number_field :ingredient_id %>
+    <%= form.hidden_field :dish_id, value: @dish.id %>
+    <%= form.submit "Submit" %>
+  <% end %>
+ </div>

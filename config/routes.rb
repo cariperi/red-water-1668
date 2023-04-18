@@ -3,4 +3,6 @@ Rails.application.routes.draw do
 
   resources :dishes, only: [:show]
 
+  resources :ingredient_dishes, only: [:create]
+
 end
