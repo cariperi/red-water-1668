@@ -1,3 +1,10 @@
 <h1>Chef Show Page for <%= @chef.name %></h1>
 
 <%= link_to "View All Ingredients", chef_ingredients_path(@chef) %>
+
+<h3>3 Most Popular Ingredients</h3>
+<ol>
+  <% @chef.most_popular_3_ingredients.each do |ingredient| %>
+    <li> <%= ingredient %> </li>
+  <% end %>
+</ol>
