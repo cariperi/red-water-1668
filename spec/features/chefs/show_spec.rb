@@ -56,7 +56,6 @@ RSpec.describe 'the chef show page' do
       IngredientDish.create!(ingredient_id: @ingredient_4.id, dish_id: @dish_5.id)
 
       visit chef_path(@chef_1)
-      save_and_open_page
 
       expect(page).to have_content("3 Most Popular Ingredients")
       expect(page).to have_content(@ingredient_2.name)
